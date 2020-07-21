@@ -1,0 +1,163 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "preview",
+    "title": "K2 Workflow Api"
+  },
+  "host": "",
+  "basePath": "/Api/Workflow/Preview",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/workflows/{id}": {
+      "post": {
+        "tags": [
+          "Workflows"
+        ],
+        "summary": "Start Workflow",
+        "description": "Creates and starts a new workflow instance.",
+        "operationId": "StartWorkflow",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Select a workflow",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PostRequestBody",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Creates and starts a new workflow instance.",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "400": {
+            "description": "Returns information about the error that occurred.",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "404": {
+            "description": "Returns information about the error that occurred.",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "default": {
+            "description": "Creates and starts a new workflow instance.",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/serverEvents/{serialNumber}/finish": {
+      "post": {
+        "tags": [
+          "ServerEvents"
+        ],
+        "summary": "Finish Server Event",
+        "description": "Send a finish response to an async server task awaiting a response",
+        "operationId": "FinishServerEvent",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "serialNumber",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "PostRequestBody",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Send a finish response to an async server task awaiting a response",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Returns information about the error that occurred.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Returns information about the error that occurred.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "Send a finish response to an async server task awaiting a response",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic",
+      "description": "Basic HTTP Authentication"
+    },
+    "oauth2": {
+      "type": "oauth2",
+      "description": "Appit AAD",
+      "flow": "implicit",
+      "authorizationUrl": "https://login.windows.net/dia.govt.nz/oauth2/authorize",
+      "scopes": {}
+    }
+  },
+  "security": [
+    {
+      "basic": []
+    },
+    {
+      "oauth2": []
+    }
+  ]
+}
